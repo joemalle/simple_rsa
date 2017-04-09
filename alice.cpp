@@ -7,7 +7,7 @@
 // Alice receives the message and decodes it
 
 int main() {
-	number_t i;
+	int i;
 	while (std::cin >> i) {
 		std::cout << (char) modpow(i, alice::b_inv, alice::n);
 	}

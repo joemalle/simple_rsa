@@ -3,7 +3,6 @@
 #include <cstdlib>
 #include <ctime>
 
-typedef long long number_t;
 
 /*
  * returns (base ^ exp) % modulus
@@ -16,9 +15,9 @@ typedef long long number_t;
  * ... who found it on page 244 of
  * Schneier, Bruce (1996). Applied Cryptography: Protocols, Algorithms, and Source Code in C, Second Edition (2nd ed.). Wiley. ISBN 978-0-471-11709-4.
  */
-number_t modpow(number_t base, number_t exp, const number_t modulus) {
+int modpow(int base, int exp, const int modulus) {
   base %= modulus;
-  number_t result = 1;
+  int result = 1;
   while (exp > 0) {
     if (exp & 1) result = (result * base) % modulus;
     base = (base * base) % modulus;
@@ -33,16 +32,16 @@ number_t modpow(number_t base, number_t exp, const number_t modulus) {
  * This is Algorithm 5.3: Multiplicative Inverse(a, b) in
  * Cryptography: Theory and Practice, Third Edition By Douglas R. Stinson
  */
-number_t mult_inv(const number_t a, const number_t  b, number_t & b_inv) {
-	number_t a_0 = a;
-	number_t b_0 = b;
-	number_t t_0 = 0;
-	number_t t = 1;
-	number_t q = a_0 / b_0;
-	number_t r = a_0 - q * b_0;
+int mult_inv(const int a, const int  b, int & b_inv) {
+	int a_0 = a;
+	int b_0 = b;
+	int t_0 = 0;
+	int t = 1;
+	int q = a_0 / b_0;
+	int r = a_0 - q * b_0;
 	
 	while (r > 0) {
-		number_t temp = (t_0 - q * t) % a;
+		int temp = (t_0 - q * t) % a;
 		t_0 = t;
 		t = temp;
 		a_0 = b_0;
@@ -60,7 +59,7 @@ number_t mult_inv(const number_t a, const number_t  b, number_t & b_inv) {
  *
  * obviously it modifies b and b_inv...
  */
-void set_b_and_b_inv(number_t & b, number_t & b_inv, const number_t phi_n) {
+void set_b_and_b_inv(int & b, int & b_inv, const int phi_n) {
 	srand (time(NULL));
 	while (true) {
 		b = 1 + (rand() % (phi_n - 1));
