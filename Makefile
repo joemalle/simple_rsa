@@ -3,11 +3,11 @@ CXXFLAGS=-std=c++11
 LFLAGS=-lgmpxx -lgmp
 
 all:	
-	$(CXX) $(CXXFLAGS) public_maker.cpp -o pm $(LFLAGS)
+	$(CXX) $(CXXFLAGS) public_maker.cpp -o pm
 	./pm
-	$(CXX) $(CXXFLAGS) alice.cpp -o alice $(LFLAGS)
-	$(CXX) $(CXXFLAGS) bob.cpp -o bob $(LFLAGS)
-	$(CXX) $(CXXFLAGS) hacker.cpp -o hacker $(LFLAGS)
+	$(CXX) $(CXXFLAGS) alice.cpp -o alice
+	$(CXX) $(CXXFLAGS) bob.cpp -o bob
+	$(CXX) $(CXXFLAGS) hacker.cpp -o hacker
 
 big_int:
 	$(CXX) $(CXXFLAGS) -DBIG_INT big_public_maker.cpp -o pm $(LFLAGS)
